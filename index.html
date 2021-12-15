@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./app.css">
     <script src="./peerjs.min.js"></script>
-    <title>Amegol - App</title>
+    <meta og:title="PeerJS" og:type="website" og:url="https://amegol.github.io/index.html" og:image="https://amegol.github.io/amegol.png" og:description="ඞ Amegol ساس (sus) ترین سایت برای صحبت کردن با ناشناسان هست. اگه اومدی و اتفاقی واست افتاد تقصییر خودته.">
+    <title>ඞ Amegol - App</title>
 </head>
 <body>
     <div class="right-container" id="right-container">
         <div class="big">
             <div class="webcam-sec">
                 <div id="person1" class="person">
-                    <video id="video" autoplay></video>
+                    <video id="video" autoplay playsinline muted></video>
                     <p>person1</p>
                 </div>
                 <div id="person2" class="person">
-                    <video id="video-2" autoplay muted></video>
+                    <video id="video-2" autoplay playsinline></video>
                     <p>person2</p>
                 </div>
             </div>
@@ -69,14 +70,13 @@
     <div class="setting" id="settingSec">
         <button class="closeBut" onclick="closeSetting();">X</button>
         <p>setting</p>
-        <p>Gear icon</p>
+        <p>ඞ</p>
         <div class="bigSettingStuff">
             <!-- a user name form -->
             <div class="userName">
                 <p>User Name</p>
                 <input type="text" placeholder="Enter your name" id="name">
-                
-        </div>
+            </div>
     </div>
 </body>
 <script src="./code.js"></script>
