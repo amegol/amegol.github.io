@@ -34,9 +34,8 @@ function makePeer() {
           call.answer(stream); // Answer the call with an A/V stream.
           call.on('stream', function(remoteStream) {
             log('Received stream');
-            document.getElementById('video-2').srcObject = stream;
-            document.getElementById('video').srcObject = remoteStream;
-            document.getElementById('video-2').muted = true;
+            document.getElementById('video').srcObject = stream;
+            document.getElementById('video-2').srcObject = remoteStream;
           });
         }, function(err) {
           log('Failed to get local stream ' + err);
@@ -72,9 +71,8 @@ function makeCall() {
     call.on('stream', function(remoteStream) {
         // Show stream in video element.
         log('Received stream');
-        document.getElementById('video').srcObject = remoteStream;
-        document.getElementById('video-2').srcObject = stream;
-        document.getElementById('video-2').muted = true;
+        document.getElementById('video-2').srcObject = remoteStream;
+        document.getElementById('video').srcObject = stream;
     });
     }, function(err) {
     log('Failed to get local stream ' + err);
