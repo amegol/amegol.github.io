@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=640px, initial-scale=.5, maximum-scale=.5" />
     <link rel="stylesheet" href="./app.css">
     <script src="./peerjs.min.js"></script>
     <title>ඞ Amegol - App</title>
@@ -25,11 +26,11 @@
         <div class="big">
             <div class="webcam-sec">
                 <div id="person1" class="person">
-                    <video id="video" autoplay playsinline muted></video>
+                    <video id="video" autoplay playsinline muted poster="./amegolO"></video>
                     <p>person1</p>
                 </div>
                 <div id="person2" class="person">
-                    <video id="video-2" autoplay playsinline></video>
+                    <video id="video-2" autoplay playsinline poster="./amegolO"></video>
                     <p>person2</p>
                 </div>
             </div>
@@ -59,12 +60,8 @@
                 <img src="./amegolO.png" alt="amegol logo">
             </div>
             <div class="menu">
-                <div class="settingBut">
-                    <a href="#" onclick="openSetting();">Setting?</a>
-                </div>
-                <div class="moreBut">
-                    <a href="#">More?</a>
-                </div>
+                <button onclick="openSetting();" class="settingBut">Setting?</button>
+                <button class="moreBut">More?</button>
             </div>
             <div class="userInfo">
                 <h2>User INfo</h2>
