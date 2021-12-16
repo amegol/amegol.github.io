@@ -1,5 +1,4 @@
 *{
-    margin: 0;
     box-sizing: border-box;
     padding: 10px;
     font-size: 20px;
@@ -10,19 +9,31 @@ html{
     min-height: 100% !important;
     height: 100%;
     padding: 0;
+    margin: 0;
 }
 body{
-    background: wheat;
     display: grid;
     grid-template-columns: 30% 1fr;
     grid-template-rows: 100%;
     width: 100%;
     height: 100%;
     padding: 0;
+    margin: 0;
+}
+button{
+    background-color: #00a0ff;
+    color: white;
+    /*whiteborder*/border: 1px solid #ff8000;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 .panel{
     display: grid;
-    background-color: white;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -33,7 +44,6 @@ body{
 }
 .big{
     display: grid;
-    background-color: white;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -72,9 +82,11 @@ body{
     justify-self: center;
 }
 .person video{
+    background-color: gray;
+    background-image: url(./amegolO.png);
+    background-position: center;
+    background-size: contain;
     width: 100%;
-    background-color: grey;
-    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -94,7 +106,6 @@ body{
     height: 100%;
     resize: none;
     background-color: transparent;
-    color: rgb(0, 0, 0);
     padding: 10px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -123,14 +134,11 @@ body{
     padding: 0;
 }
 .userInfo{
-    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    background-color: white;
-    color: rgb(0, 0, 0);
     padding: 10px;
     overflow: auto;
     width: 100%;
@@ -140,13 +148,11 @@ body{
     display: none;
     grid-template-columns: min-content 1fr min-content;
     grid-template-rows: min-content 1fr;
-    border: 5px solid darkslateblue;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    background-color: wheat;
     z-index: 0;
     position: absolute;
     width: 75%;
@@ -168,7 +174,6 @@ body{
     overflow: auto;
     grid-column: 2/3;
     grid-row: 2/3;
-    background-color: white;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -177,4 +182,45 @@ body{
 }
 .setting p{
     justify-self: center;
+}
+@media only screen and (max-width: 900px) {
+    /* For mobile phones: */
+    html{
+        width: 100%;
+    }
+    body{
+        width: 100%;
+        grid-template-columns: 100%;
+        grid-template-rows: min-content min-content;
+    }
+    .right-container{
+        grid-column: 1/2;
+        grid-row: 2/3;
+        width: 100%;
+        height: 100%;
+    }
+    .left-container{
+        grid-column: 1/2;
+        grid-row: 1/2;
+        width: 100%;
+        height: 100%;
+    }
+    .webcam-sec{
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    .person{
+        justify-content: normal;
+    }
+    .person video{
+        width: 100%;
+    }
+    .bottom-sec{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .tabligh{
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
 }
