@@ -65,30 +65,20 @@
             </div>
             <div class="userInfo">
                 <h2>User INfo</h2>
-                <div id="name" class="info">Jafar</div>
-                <div id="age" class="info">17</div>
-                <div id="gender" class="info">Male</div>
-                <div id="emoji" class="info">😏</div>
-                <div class="about-con">
-                    <p id="about" class="info">
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                        A lot of text
-                    </p>
-                </div>
+                <p class="info">Name :</p><p id="nameInfo">Name</p>
+                <p class="info">Age :</p><p id="ageInfo">Age</p>
+                <p class="info">city :</p><p id="cityInfo">city</p>
+                <p class="info">Emoji :</p><p id="emojiInfo">Emoji</p>
+                <p class="info">favorite :</p><p id="favoriteInfo">favorite</p>
+                <p class="info">favoriteColor :</p><p id="favoriteColorInfo">favoriteColor</p>
+                <p class="info">favoriteFood :</p><p id="favoriteFoodInfo">favoriteFood</p>
+                <p class="info">favoriteMovie :</p><p id="favoriteMovieInfo">favoriteMovie</p>
+                <p class="info">favoriteTvShow :</p><p id="favoriteTVShowInfo">favoriteTvShow</p>
+                <p class="info">favoriteBook :</p><p id="favoriteBookInfo">favoriteBook</p>
+                <p class="info">favoriteGame :</p><p id="favoriteGameInfo">favoriteGame</p>
+                <p class="info">favoriteSport :</p><p id="favoriteSportInfo">favoriteSport</p>
+                <p class="info">favoriteSong :</p><p id="favoriteSongInfo">favoriteSong</p>
+                <p class="info">about :</p><p id="aboutInfo">about</p>
             </div>
         </div>
     </div>
@@ -97,11 +87,60 @@
         <p>setting</p>
         <p>ඞ</p>
         <div class="bigSettingStuff">
-            <!-- a user name form -->
             <div class="userName">
-                <p>User Name</p>
-                <input type="text" placeholder="Enter your name" id="name">
+                <p>Info</p>
+                <p>Name :</p><p id="nameDisplay">Name</p>
+                <p>Email :</p><p id="emailDisplay">Email</p>
+                <p>Phone :</p><p id="phoneDisplay">Phone</p>
+                <p>Age :</p><p id="ageDisplay">Age</p>
+                <p>city :</p><p id="cityDisplay">city</p>
+                <p>Emoji :</p><p id="emojiDisplay">Emoji</p>
+                <p>favorite :</p><p id="favoriteDisplay">favorite</p>
+                <p>favoriteColor :</p><p id="favoriteColorDisplay">favoriteColor</p>
+                <p>favoriteFood :</p><p id="favoriteFoodDisplay">favoriteFood</p>
+                <p>favoriteMovie :</p><p id="favoriteMovieDisplay">favoriteMovie</p>
+                <p>favoriteTvShow :</p><p id="favoriteTVShowDisplay">favoriteTvShow</p>
+                <p>favoriteBook :</p><p id="favoriteBookDisplay">favoriteBook</p>
+                <p>favoriteGame :</p><p id="favoriteGameDisplay">favoriteGame</p>
+                <p>favoriteSport :</p><p id="favoriteSportDisplay">favoriteSport</p>
+                <p>favoriteSong :</p><p id="favoriteSongDisplay">favoriteSong</p>
+                <p>about :</p><p id="aboutDisplay">about</p>
+                <p>Id :</p><p id="idDisplay">Id</p>
+                <p>sign :</p><p id="signDisplay">sign</p>
+                <button onclick="exportPersonalityData();">Export Data</button>
             </div>
+        </div>
+    </div>
+    <div class="signUp" id="signUpForm">
+        <div class="SPPart3" id="SPPart3">
+            <p>خوبه پس بیا بترکونیم. اینا پر کن. فقط یکم مونده. و بدون ما واست تو ایمیل چرت و پرت ارسال نمیکنیم!!</p>
+            <input required type="name" placeholder="اسم" id="nameInput" autocomplete="on">
+            <input required type="email" placeholder="ایمیل" id="emailInput" autocomplete="on">
+            <input required type="age" placeholder="سن" id="ageInput" autocomplete="on">
+            <input required type="city" placeholder="شهر" id="cityInput" autocomplete="on">
+            <input required type="phone" placeholder="تلفن" id="phoneInput" autocomplete="on">
+            <input required type="favorite" placeholder="علاقه مندی" id="favoriteInput" autocomplete="on">
+            <input required type="favoriteColor" placeholder="رنگ مورد علاقه" id="favoriteColorInput" autocomplete="on">
+            <input required type="favoriteFood" placeholder="غذای مورد علاقه" id="favoriteFoodInput" autocomplete="on">
+            <input required type="favoriteMovie" placeholder="فیلم مورد علاقه" id="favoriteMovieInput" autocomplete="on">
+            <input required type="favoriteSong" placeholder="آهنگ مورد علاقه" id="favoriteSongInput" autocomplete="on">
+            <input required type="favoriteBook" placeholder="کتاب مورد علاقه" id="favoriteBookInput" autocomplete="on">
+            <input required type="favoriteGame" placeholder="بازی مورد علاقه" id="favoriteGameInput" autocomplete="on">
+            <input required type="favoriteSport" placeholder="ورزش مورد علاقه" id="favoriteSportInput" autocomplete="on">
+            <input required type="favoriteTVShow" placeholder="سریال مورد علاقه" id="favoriteTVShowInput" autocomplete="on">
+            <textarea required type="about" placeholder="درباره من" id="aboutInput" autocomplete="on"></textarea>
+            <button onclick="remove('SPPart3');">Yes</button>
+        </div>
+        <div class="SPPart2" id="SPPart2">
+            <p>من حرفتو باور نمی کنم. اگه راست میگی اینجا بنویس</p>
+            <input required type="sign" placeholder="یه چی بنویس که بشه مدرک" id="sign" autocomplete="on">
+            <button onclick="remove('SPPart2');">Yes</button>
+        </div>
+        <div class="SPPart1" id="SPPart1">
+        <p>سن من مجاز است</p>
+        <button onclick="remove('SPPart1');">Yes</button>
+        <input id="importData" type="file" oninput="importPersonalityData()">
+        </div>
     </div>
 </body>
 <script src="./code.js"></script>

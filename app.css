@@ -145,6 +145,8 @@ button{
     height: 100%;
 }
 .setting{
+    background-color: white;
+    border: 1px solid #ff8000;
     display: none;
     grid-template-columns: min-content 1fr min-content;
     grid-template-rows: min-content 1fr;
@@ -171,6 +173,7 @@ button{
     top: 0;
 }
 .bigSettingStuff{
+    background-color: wheat;
     overflow: auto;
     grid-column: 2/3;
     grid-row: 2/3;
@@ -182,6 +185,35 @@ button{
 }
 .setting p{
     justify-self: center;
+}
+.signUp{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.SPPart1{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.SPPart2{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.SPPart3{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 @media only screen and (max-width: 900px) {
     /* For mobile phones: */
