@@ -400,11 +400,11 @@ function writeMetaData(metadata) {
     document.getElementById('favoriteTVShowInfo').textContent = metadata.favoriteTVShow;
     document.getElementById('aboutInfo').textContent = metadata.about;
 }
-//requset new user from http://127.0.0.1:3000/newuser?prename= My secret id & lastname= metadata secret id
+//requset new user from https://amegol.herokuapp.com/newuser?prename= My secret id & lastname= metadata secret id
 function requsetNewUser () {
     var prename = myData.idSecret;
     var lastname = otherData.idSecret;
-    var url = 'localhost:3000' + '/newuser?prename=' + prename + '&lastname=' + lastname;
+    var url = 'https://amegol.herokuapp.com' + '/newuser?prename=' + prename + '&lastname=' + lastname;
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
     xhr.onreadystatechange = function () {
