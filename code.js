@@ -9,14 +9,14 @@ var constraints = {
 };
 var myData = {};
 var otherData = {};
+var isLoggedIn = false;
+var rightNowCall;
 function utf8_to_b64( str ) {
     return window.btoa(unescape(encodeURIComponent( str )));
 }
-
 function b64_to_utf8( str ) {
     return decodeURIComponent(escape(window.atob( str )));
 }
-
 function makePeer() {
     // get a element with id name
     const id = document.getElementById('name').value;
@@ -56,7 +56,6 @@ function makePeer() {
                 {label: 'AmegolChat' , metadata: data}
             );
             connTG.on('open', function() {
-                document.getElementById('connect').disabled = true;
                 log('Connected to ' + connTG.peer);
                 connTG.on('error', function(err) {
                     log(err);
@@ -68,6 +67,7 @@ function makePeer() {
         var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia(constraints);
         getUserMedia({video: true, audio: true}, function(stream) {
           call.answer(stream); // Answer the call with an A/V stream.
+          rightNowCall = call;
           call.on('stream', function(remoteStream) {
             log('Received stream');
             document.getElementById('video').srcObject = stream;
@@ -78,7 +78,7 @@ function makePeer() {
         });
     });
 }
-function makeConnect() {
+function makeConnect(UserID) {
     var data = localStorage.getItem("PersonalityData");
     if (data != null) {
         var data = b64_to_utf8(data);
@@ -101,11 +101,10 @@ function makeConnect() {
             idSecret: data.idSecret,
         };
     }
-    const id = document.getElementById('id').value;
+    const id = UserID;
     connTG = peer.connect(id ,
         {label: 'AmegolChat' , metadata: data}
     );
-    document.getElementById('connect').disabled = true;
     connTG.on('open', function() {
         log('Connected to ' + id);
         connTG.on('error', function(err) {
@@ -115,18 +114,19 @@ function makeConnect() {
 }
 function makeDisconnect() {
     peer.disconnect();
-    log('disconnect');
+    makePeer();
 }
 function makeSend() {
     const msg = document.getElementById('message').value;
     connTG.send(msg);
     log('send');
 }
-function makeCall() {
+function makeCall(UserID) {
     var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia(constraints);
-    const id = document.getElementById('id').value;
+    const id = UserID;
     getUserMedia({video: true, audio: true}, function(stream) {
     var call = peer.call(id, stream);
+    rightNowCall = call;
     call.on('stream', function(remoteStream) {
         // Show stream in video element.
         log('Received stream');
@@ -336,10 +336,6 @@ function readPersonalityData() {
         myData = data;
     }
 }
-if (localStorage.getItem("isRigister") == 'true') {
-    document.getElementById('signUpForm').remove();
-    readPersonalityData();
-}
 // export PersonalityData into a file named PersonalityData.json
 function exportPersonalityData() {
     var data = localStorage.getItem("PersonalityData");
@@ -400,11 +396,48 @@ function writeMetaData(metadata) {
     document.getElementById('favoriteTVShowInfo').textContent = metadata.favoriteTVShow;
     document.getElementById('aboutInfo').textContent = metadata.about;
 }
-//requset new user from https://amegol.herokuapp.com/newuser?prename= My secret id & lastname= metadata secret id
-function requsetNewUser () {
+//when code is ready do this
+//{"status":"OK","name":"Amegol Server","version":"1.0.0","commands":["/newUser","/addUser","/getUsers","/deleteUsers"],"description":"This is a server for the Amegol","author":"Ezrabro"}
+if (localStorage.getItem("isRigister") == 'true') {
+    document.getElementById('signUpForm').remove();
+    readPersonalityData();
+    makePeer();
+    var prename = myData.idSecret;
+    var lastname = myData.idSecret;
+    var url = 'https://amegol.herokuapp.com' + '/adduser?prename=' + prename + '&lastname=' + lastname;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = xhr.responseText;
+            console.log(xhr);
+            isLoggedIn = true;
+        }
+    }
+    xhr.send();
+}
+function makeEndCall() {
+    if (rightNowCall != null) {
+        rightNowCall.close();
+        rightNowCall = null;
+    }
+}
+//? mind map
+// first we disconnect
+// and end the call
+// then we add user to server
+// then we request other user id
+// then we delete other user id from server
+// then we connect to other user id
+// then we call other user id
+// on call end we repeat this process
+// on new user we repeat this process
+function newUser() {
+    makeDisconnect();
+    makeEndCall();
     var prename = myData.idSecret;
     var lastname = otherData.idSecret;
-    var url = 'https://amegol.herokuapp.com' + '/newuser?prename=' + prename + '&lastname=' + lastname;
+    var url = 'https://amegol.herokuapp.com' + '/adduser?prename=' + prename;
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
     xhr.onreadystatechange = function () {
@@ -414,4 +447,29 @@ function requsetNewUser () {
         }
     }
     xhr.send();
+    var url = 'https://amegol.herokuapp.com' + '/newuser?prename=' + prename + '&lastname=' + lastname;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = xhr.responseText;
+            console.log(xhr);
+            lastname = decodeURIComponent(data);
+            lastname = decodeURIComponent(lastname);
+        }
+    }
+    xhr.send();
+    var url = 'https://amegol.herokuapp.com' + '/deleteusers?prename=' + prename + '&lastname=' + lastname;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = xhr.responseText;
+            console.log(xhr);
+        }
+    }
+    xhr.send();
+    makeConnect(lastname);
+    makeCall(lastname);
+    log('new user added');
 }
