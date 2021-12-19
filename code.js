@@ -413,5 +413,6 @@ function requsetNewUser () {
             console.log(xhr);
         }
     }
+    xhr.setRequestHeader('Access-Control-Allow-Origin', 'origin');
     xhr.send();
 }
