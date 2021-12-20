@@ -18,8 +18,10 @@ function b64_to_utf8( str ) {
     return decodeURIComponent(escape(window.atob( str )));
 }
 function makePeer() {
-    // get a element with id name
-    const id = document.getElementById('name').value;
+    var data = localStorage.getItem("PersonalityData");
+    var data = b64_to_utf8(data);
+    var data = JSON.parse(data);
+    const id = data.idSecret;
     peer = new Peer([id], []);
     log('Joined peer');
     peer.on('connection', function(dataConnection) {
@@ -456,20 +458,61 @@ function newUser() {
             console.log(xhr);
             lastname = decodeURIComponent(data);
             lastname = decodeURIComponent(lastname);
+            lastname = lastname.substring(1, lastname.length - 1);
         }
     }
     xhr.send();
-    var url = 'https://amegol.herokuapp.com' + '/deleteusers?prename=' + prename + '&lastname=' + lastname;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, false);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = xhr.responseText;
-            console.log(xhr);
+    if (lastname != "no user") {
+        var url = 'https://amegol.herokuapp.com' + '/deleteuser?prename=' + prename;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, false);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseText;
+                console.log(xhr);
+            }
         }
+        makeConnect(lastname);
+        makeCall(lastname);
+        log('new user added');
+        xhr.send();
     }
-    xhr.send();
-    makeConnect(lastname);
-    makeCall(lastname);
-    log('new user added');
+    else {
+        log('no user');
+    }
+}
+function fastFakeData () {
+    //generate a 5 letter random string
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    var idSecret = text.substring(0, 2) + text.substring(0, 2) + text.substring(0, 2) + Math.floor(Math.random() * 100000);
+    var data = {
+        name: text,
+        email: text,
+        age: text,
+        city: text,
+        phone: text,
+        emoji: text,
+        favorite: text,
+        favoriteColor: text,
+        favoriteFood: text,
+        favoriteMovie: text,
+        favoriteSong: text,
+        favoriteBook: text,
+        favoriteGame: text,
+        favoriteSport: text,
+        favoriteTVShow: text,
+        about: text,
+        sign: text,
+        idSecret: idSecret
+    }
+    console.log(data);
+    var data = JSON.stringify(data);
+    var data = utf8_to_b64(data);
+    localStorage.setItem("PersonalityData", data);
+    localStorage.setItem("isRigister", true);
+    document.getElementById('signUpForm').remove();
+    readPersonalityData();
 }
