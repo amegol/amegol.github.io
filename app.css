@@ -20,10 +20,22 @@ body{
     padding: 0;
     margin: 0;
 }
-button{
-    background-color: #00a0ff;
+input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
     color: white;
-    /*whiteborder*/border: 1px solid #ff8000;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+button{
+    background: #c31432;
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);
+    background: linear-gradient(to right, #240b36, #c31432);
+    color: white;
     border-radius: 10px;
     cursor: pointer;
     width: 100%;
@@ -54,13 +66,24 @@ button{
     grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr;
 }
+.right-container button, .left-container button{
+    background-color: #242323;
+    background: #242323;
+}
 .right-container{
+    background-color: #240b36;
+    color: white;
+    display: none;
     width: 100%;
     height: 100%;
     grid-row: 1/2;
     grid-column: 2/3;
 }
 .left-container{
+    background: #240b36;
+    background: -webkit-linear-gradient(to right, #c31432, #240b36);
+    background: linear-gradient(to right, #c31432, #240b36);
+    display: none;
     grid-column: 1/2;
     grid-row: 1/2;
     width: 100%;
@@ -97,8 +120,8 @@ button{
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content min-content min-content min-content;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: min-content min-content;
 }
 .chat textarea{
     grid-column: 1/3;
@@ -112,6 +135,24 @@ button{
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+}
+.chat input{
+    grid-column: 1/3;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.chat button{
+    grid-column: 3/4;
+    width: 100%;
+    height: 100%;
 }
 .bottom-sec{
     display: grid;
@@ -133,20 +174,28 @@ button{
 .info{
     padding: 0;
 }
+.userInfo h2{
+    grid-column: 1/3;
+    justify-self: center;
+}
 .userInfo{
+    background-color: #242323;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr min-content;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     padding: 10px;
-    overflow: auto;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
 }
 .setting{
-    background-color: white;
-    border: 1px solid #ff8000;
+    background-color: #242323;
+    color: white;
     display: none;
     grid-template-columns: min-content 1fr min-content;
     grid-template-rows: min-content 1fr;
@@ -173,7 +222,8 @@ button{
     top: 0;
 }
 .bigSettingStuff{
-    background-color: wheat;
+    background-color: #2e2c2c;
+    color: white;
     overflow: auto;
     grid-column: 2/3;
     grid-row: 2/3;
@@ -183,37 +233,218 @@ button{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
+.userName{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.userName h2{
+    grid-column: 1/3;
+    justify-self: center;
+}
+.userName button{
+    grid-column: 1/3;
+    justify-self: center;
+}
 .setting p{
     justify-self: center;
 }
 .signUp{
+    background: #c31432;
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);
+    background: linear-gradient(to right, #240b36, #c31432);
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 }
 .SPPart1{
-    background-color: white;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: min-content min-content min-content min-content;
+    color: white;
+    overflow: auto;
+    background-color: #242323;
+    border-radius: 10px;
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50% , -50%);
+    -webkit-transform:translate(-50% , -50%);
+    -moz-transform:translate(-50% , -50%);
+    -ms-transform:translate(-50% , -50%);
+    -o-transform:translate(-50% , -50%);
     grid-column: 1/2;
     grid-row: 1/2;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.SPPart1 hr{
+    width: 100%;
+    height: min-content;
+    padding: 0;
+    color: white;
+    border-style: dashed;
+    grid-column: 1/4;
+    justify-self: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.SPPart1 h2{
+    justify-self: center;
+    grid-column: 1/4;
+}
+.SPPart1 button{
+    grid-row: 2/3;
+    width: 50%;
+    height: 50%;
+    justify-self: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.SPPart1 input{
+    justify-self: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    grid-column: 1/2;
+    grid-row: 4/5;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+.SPPart1 p{
+    justify-self: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    grid-column: 3/4;
 }
 .SPPart2{
-    background-color: white;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    color: white;
+    border-radius: 10px;
+    overflow: auto;
+    background-color: #242323;
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50% , -50%);
+    -webkit-transform:translate(-50% , -50%);
+    -moz-transform:translate(-50% , -50%);
+    -ms-transform:translate(-50% , -50%);
+    -o-transform:translate(-50% , -50%);
     grid-column: 1/2;
     grid-row: 1/2;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.ssp2c{
+    display: grid;
+    width: 50%;
+    height: 50%;
+    justify-self: center;
+    justify-content: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
 }
 .SPPart3{
-    background-color: white;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    color: white;
+    border-radius: 10px;
+    overflow: auto;
+    background-color: #242323;
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50% , -50%);
+    -webkit-transform:translate(-50% , -50%);
+    -moz-transform:translate(-50% , -50%);
+    -ms-transform:translate(-50% , -50%);
+    -o-transform:translate(-50% , -50%);
     grid-column: 1/2;
     grid-row: 1/2;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.SPPart3 h2{
+    justify-self: center;
+    grid-column: 1/7;
+}
+.SPPart3 button{
+    grid-row: 5/6;
+    grid-column: 6/7;
+    width: 50%;
+    height: 50%;
+    justify-self: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.SPPart3 textarea{
+    grid-column: 4/7;
+    grid-row: 2/5;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
 }
 @media only screen and (max-width: 900px) {
     /* For mobile phones: */

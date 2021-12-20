@@ -36,10 +36,10 @@
             </div>
             <div class="bottom-sec">
                 <div class="chat">
-                    <textarea disabled placeholder="test" id="log"></textarea>
                     <input type="text" placeholder="Message" id="message">
-                    <button onclick="newUser();">Gas Gas Gas!!!</button>
                     <button onclick="makeSend();">Send</button>
+                    <textarea disabled placeholder="test" id="log"></textarea>
+                    <button onclick="newUser();">Gas Gas Gas!!!</button>
                 </div>
                 <div class="tabligh">
                     <img src="./amegolO copy.png" alt="">
@@ -81,7 +81,7 @@
         <p>ඞ</p>
         <div class="bigSettingStuff">
             <div class="userName">
-                <p>Info</p>
+                <h2>Info</h2>
                 <p>Name :</p><p id="nameDisplay">Name</p>
                 <p>Email :</p><p id="emailDisplay">Email</p>
                 <p>Phone :</p><p id="phoneDisplay">Phone</p>
@@ -106,7 +106,7 @@
     </div>
     <div class="signUp" id="signUpForm">
         <div class="SPPart3" id="SPPart3">
-            <p>خوبه پس بیا بترکونیم. اینا پر کن. فقط یکم مونده. و بدون ما واست تو ایمیل چرت و پرت ارسال نمیکنیم!!</p>
+            <h2>خوبه پس بیا بترکونیم. اینا پر کن. فقط یکم مونده. و بدون ما واست تو ایمیل چرت و پرت ارسال نمیکنیم!!</h2>
             <input required type="name" placeholder="اسم" id="nameInput" autocomplete="on">
             <input required type="email" placeholder="ایمیل" id="emailInput" autocomplete="on">
             <input required type="age" placeholder="سن" id="ageInput" autocomplete="on">
@@ -125,14 +125,19 @@
             <button onclick="remove('SPPart3');">Yes</button>
         </div>
         <div class="SPPart2" id="SPPart2">
-            <p>من حرفتو باور نمی کنم. اگه راست میگی اینجا بنویس</p>
-            <input required type="sign" placeholder="یه چی بنویس که بشه مدرک" id="sign" autocomplete="on">
-            <button onclick="remove('SPPart2');">Yes</button>
+            <div class="ssp2c">
+                <p>من حرفتو باور نمی کنم. اگه راست میگی اینجا بنویس</p>
+                <input required type="sign" placeholder="یه چی بنویس که بشه مدرک" id="sign" autocomplete="on">
+                <button onclick="remove('SPPart2');">Yes</button>
+            </div>
         </div>
         <div class="SPPart1" id="SPPart1">
-        <p>سن من مجاز است</p>
-        <button onclick="remove('SPPart1');">Yes</button>
-        <input id="importData" type="file" oninput="importPersonalityData()">
+            <h2>Sign Up | Login</h2>
+            <p>سن من مجاز است</p>
+            <button onclick="remove('SPPart1');">Yes</button>
+            <hr>
+            <p>یا اکانت قبلی را وارد کنید.</p>
+            <input id="importData" type="file" oninput="importPersonalityData()">
         </div>
     </div>
 </body>

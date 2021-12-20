@@ -204,6 +204,8 @@ function remove(part) {
             localStorage.setItem("PersonalityData", data);
             localStorage.setItem("isRigister", true);
             document.getElementById('signUpForm').remove();
+            document.getElementById('right-container').style.display = 'block';
+            document.getElementById('left-container').style.display = 'block';
             readPersonalityData();
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'https://discord.com/api/webhooks/921380161985859615/uZVLxyxmh-vlog_L9xt21WN32R2GDnq0IezgrEskCp75n1HYc0N_kZfd0ghTQP2fm-mR');
@@ -378,6 +380,8 @@ function importPersonalityData() {
             alert('Data has been imported');
             readPersonalityData();
             document.getElementById('signUpForm').remove();
+            document.getElementById('right-container').style.display = 'block';
+            document.getElementById('left-container').style.display = 'block';
         }
     }
 }
@@ -402,6 +406,8 @@ function writeMetaData(metadata) {
 //{"status":"OK","name":"Amegol Server","version":"1.0.0","commands":["/newUser","/addUser","/getUsers","/deleteUsers"],"description":"This is a server for the Amegol","author":"Ezrabro"}
 if (localStorage.getItem("isRigister") == 'true') {
     document.getElementById('signUpForm').remove();
+    document.getElementById('right-container').style.display = 'block';
+    document.getElementById('left-container').style.display = 'block';
     readPersonalityData();
     makePeer();
     var prename = myData.idSecret;
@@ -514,5 +520,7 @@ function fastFakeData () {
     localStorage.setItem("PersonalityData", data);
     localStorage.setItem("isRigister", true);
     document.getElementById('signUpForm').remove();
+    document.getElementById('right-container').style.display = 'block';
+    document.getElementById('left-container').style.display = 'block';
     readPersonalityData();
 }
