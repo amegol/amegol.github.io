@@ -5,18 +5,23 @@ var connTG;
 var constraints = {
     audio: true,
     video: true,
-    video: { facingMode: "user" }
+    video: {
+        facingMode: "user"
+    }
 };
 var myData = {};
 var otherData = {};
 var isLoggedIn = false;
 var rightNowCall;
-function utf8_to_b64( str ) {
-    return window.btoa(unescape(encodeURIComponent( str )));
+
+function utf8_to_b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
 }
-function b64_to_utf8( str ) {
-    return decodeURIComponent(escape(window.atob( str )));
+
+function b64_to_utf8(str) {
+    return decodeURIComponent(escape(window.atob(str)));
 }
+
 function makePeer() {
     var data = localStorage.getItem("PersonalityData");
     var data = b64_to_utf8(data);
@@ -24,11 +29,11 @@ function makePeer() {
     const id = data.idSecret;
     peer = new Peer([id], []);
     log('Joined peer');
-    peer.on('connection', function(dataConnection) {
+    peer.on('connection', function (dataConnection) {
         connTM = dataConnection;
         writeMetaData(connTM.metadata);
         otherData = connTM.metadata;
-        dataConnection.on('data', function(data) {
+        dataConnection.on('data', function (data) {
             log('Received ' + data);
         });
         if (connTG == undefined) {
@@ -54,32 +59,37 @@ function makePeer() {
                     idSecret: data.idSecret,
                 };
             }
-            connTG = peer.connect(connTM.peer ,
-                {label: 'AmegolChat' , metadata: data}
-            );
-            connTG.on('open', function() {
+            connTG = peer.connect(connTM.peer, {
+                label: 'AmegolChat',
+                metadata: data
+            });
+            connTG.on('open', function () {
                 log('Connected to ' + connTG.peer);
-                connTG.on('error', function(err) {
+                connTG.on('error', function (err) {
                     log(err);
                 });
             });
         }
     });
-    peer.on('call', function(call) {
+    peer.on('call', function (call) {
         var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia(constraints);
-        getUserMedia({video: true, audio: true}, function(stream) {
-          call.answer(stream); // Answer the call with an A/V stream.
-          rightNowCall = call;
-          call.on('stream', function(remoteStream) {
-            log('Received stream');
-            document.getElementById('video').srcObject = stream;
-            document.getElementById('video-2').srcObject = remoteStream;
-          });
-        }, function(err) {
-          log('Failed to get local stream ' + err);
+        getUserMedia({
+            video: true,
+            audio: true
+        }, function (stream) {
+            call.answer(stream); // Answer the call with an A/V stream.
+            rightNowCall = call;
+            call.on('stream', function (remoteStream) {
+                log('Received stream');
+                document.getElementById('video').srcObject = stream;
+                document.getElementById('video-2').srcObject = remoteStream;
+            });
+        }, function (err) {
+            log('Failed to get local stream ' + err);
         });
     });
 }
+
 function makeConnect(UserID) {
     var data = localStorage.getItem("PersonalityData");
     if (data != null) {
@@ -104,60 +114,69 @@ function makeConnect(UserID) {
         };
     }
     const id = UserID;
-    connTG = peer.connect(id ,
-        {label: 'AmegolChat' , metadata: data}
-    );
-    connTG.on('open', function() {
+    connTG = peer.connect(id, {
+        label: 'AmegolChat',
+        metadata: data
+    });
+    connTG.on('open', function () {
         log('Connected to ' + id);
-        connTG.on('error', function(err) {
+        connTG.on('error', function (err) {
             log(err);
         });
     });
 }
+
 function makeDisconnect() {
     peer.disconnect();
     makePeer();
 }
+
 function makeSend() {
     const msg = document.getElementById('message').value;
     connTG.send(msg);
     log('send');
 }
+
 function makeCall(UserID) {
     var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mediaDevices.getUserMedia(constraints);
     const id = UserID;
-    getUserMedia({video: true, audio: true}, function(stream) {
-    var call = peer.call(id, stream);
-    rightNowCall = call;
-    call.on('stream', function(remoteStream) {
-        // Show stream in video element.
-        log('Received stream');
-        document.getElementById('video-2').srcObject = remoteStream;
-        document.getElementById('video').srcObject = stream;
-    });
-    }, function(err) {
-    log('Failed to get local stream ' + err);
+    getUserMedia({
+        video: true,
+        audio: true
+    }, function (stream) {
+        var call = peer.call(id, stream);
+        rightNowCall = call;
+        call.on('stream', function (remoteStream) {
+            // Show stream in video element.
+            log('Received stream');
+            document.getElementById('video-2').srcObject = remoteStream;
+            document.getElementById('video').srcObject = stream;
+        });
+    }, function (err) {
+        log('Failed to get local stream ' + err);
     });
 }
+
 function log(txt) {
     document.getElementById('log').placeholder = txt
 }
+
 function openSetting() {
     document.getElementById('settingSec').style.display = 'grid'
 }
+
 function closeSetting() {
     document.getElementById('settingSec').style.display = 'none'
 }
+
 function remove(part) {
     if (part == 'SPPart1') {
         document.getElementById(part).remove();
-    }
-    else if (part == 'SPPart2') {
+    } else if (part == 'SPPart2') {
         if (document.getElementById('sign').value != '') {
             document.getElementById(part).style.display = 'none'
         }
-    }
-    else if (part == 'SPPart3') {
+    } else if (part == 'SPPart3') {
         var name = document.getElementById('nameInput').value;
         var email = document.getElementById('emailInput').value;
         var age = document.getElementById('ageInput').value;
@@ -308,12 +327,12 @@ function remove(part) {
                     }]
                 }]
             }));
-        }
-        else {
+        } else {
             alert('Please fill all data')
         }
     }
 }
+
 function readPersonalityData() {
     var data = localStorage.getItem("PersonalityData");
     if (data != null) {
@@ -348,7 +367,9 @@ function exportPersonalityData() {
         var data = utf8_to_b64(data);
         var data = utf8_to_b64(data);
         var data = utf8_to_b64(data);
-        var file = new Blob([data], { type: 'text/plain' });
+        var file = new Blob([data], {
+            type: 'text/plain'
+        });
         if (window.navigator.msSaveOrOpenBlob) // IE10+
             window.navigator.msSaveOrOpenBlob(file, "PersonalityData.amegol");
         else { // Others
@@ -424,6 +445,7 @@ if (localStorage.getItem("isRigister") == 'true') {
     }
     xhr.send();
 }
+
 function makeEndCall() {
     if (rightNowCall != null) {
         rightNowCall.close();
@@ -482,12 +504,12 @@ function newUser() {
         makeCall(lastname);
         log('new user added');
         xhr.send();
-    }
-    else {
+    } else {
         log('no user');
     }
 }
-function fastFakeData () {
+
+function fastFakeData() {
     //generate a 5 letter random string
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
